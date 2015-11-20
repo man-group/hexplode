@@ -1,0 +1,63 @@
+<html>
+<head>
+
+<link href="/static/js/jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/static/css/hexplode.css">
+
+<script src="/static/js/jquery-1.11.1.js"></script>
+<script src="/static/js/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+
+<script src="/static/js/hexplode.js"></script>
+<title>Hexplode</title>
+</head>
+<body>
+
+<div id="boardbox">
+<img id="title" src="/static/img/hexplode.png">
+<div id="board"></div>
+<div id="player1" class="score">Player 1<div id="score1">0</div></div>
+<div id="player2" class="score">Player 2<div id="score2">0</div></div>
+<div id="info" title="Game rules and info">i</div>
+<div id="exit" title="Exit Game">X</div>
+</div>
+
+<div id="infopopup" title="Rules">
+<img src="/static/img/example.gif" style="margin: auto; width: 265px; display: block;">
+<p>
+The board comprises an array of hexagonal tiles, on which the players take 
+turns to place counters. When the number of counters on a given tile equals the 
+number of adjacent tiles the tile "hexplodes" and the contents of the tile are 
+equally distributed to its neighbours changing the ownership of neighbouring 
+counters over to the current player in the process. This process can often 
+generate a chain reaction. The winner is the player that removes all of their 
+opponents counters from the board.</p>
+</div>
+
+<div id="newgame" title="New Game">
+<table class="settings">
+<tr>
+<td class="name">Player 1:</td>
+<td class="value"><select id="player1_algo">
+<option value="Not a robot!">Human</option>
+</select></td>
+</tr>
+<tr>
+<td class="name">Player 2: </td>
+<td class="value"><select id="player2_algo">
+<option value="Not a robot!">Human</option>
+</select></td>
+</tr>
+<tr>
+<td class="name">Board size:</td>
+<td class="value"><input id="boardsize" type="number" min="3" max="12" value="4" readonly></td>
+</tr>
+</table>
+</div>
+
+<div id="winner" title="Game Over"></div>
+<pre id="error" title="Error"></pre>
+
+<div id="exitpopup" title="Exit Game">Are you sure you want to end the game?</div>
+
+</body>
+</html>

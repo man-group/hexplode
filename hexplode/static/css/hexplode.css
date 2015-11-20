@@ -1,0 +1,174 @@
+body {
+background-image: url("/static/img/background.jpg");
+background-repeat: no-repeat;
+background-position: 0% 0%; 
+background-size: cover;
+}
+
+.tile {
+width: 60px;
+height: 54px;
+background-image: url("/static/img/tile.png");
+margin-bottom: 1px;
+margin-top: 1px;
+}
+
+.tile[counters="1"][player="0"] {
+background-image: url("/static/img/red1.png"), url("/static/img/tile.png");
+}
+
+.tile[counters="2"][player="0"] {
+background-image: url("/static/img/red2.png"), url("/static/img/tile.png");
+}
+
+.tile[counters="3"][player="0"] {
+background-image: url("/static/img/red3.png"), url("/static/img/tile.png");
+}
+
+.tile[counters="4"][player="0"] {
+background-image: url("/static/img/red4.png"), url("/static/img/tile.png");
+}
+
+.tile[counters="5"][player="0"] {
+background-image: url("/static/img/red5.png"), url("/static/img/tile.png");
+}
+
+.tile[counters="1"][player="1"] {
+background-image: url("/static/img/blue1.png"), url("/static/img/tile.png");
+}
+
+.tile[counters="2"][player="1"] {
+background-image: url("/static/img/blue2.png"), url("/static/img/tile.png");
+}
+
+.tile[counters="3"][player="1"] {
+background-image: url("/static/img/blue3.png"), url("/static/img/tile.png");
+}
+
+.tile[counters="4"][player="1"] {
+background-image: url("/static/img/blue4.png"), url("/static/img/tile.png");
+}
+
+.tile[counters="5"][player="1"] {
+background-image: url("/static/img/blue5.png"), url("/static/img/tile.png");
+}
+
+.row {
+position: absolute;
+}
+
+#boardbox {
+padding-bottom: 50px;
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+}
+
+#title {
+margin-top: 20pt;
+margin-bottom: 40pt;
+margin-left: auto;
+margin-right: auto;
+width: 300px;
+display: block;
+}
+
+#board {
+position: relative;
+margin: auto;
+}
+
+.score {
+font-size: 24pt;
+line-height: 30pt;
+position: absolute;
+top: 0px;
+border: solid;
+border-radius: 10px;
+width: 120pt;
+height: 56pt;
+border-width: 4px;
+border-style: solid;
+margin: 15px;
+text-align: center;
+padding: 5px;
+box-shadow: 0px 0px 3px 1px white;
+background-color: rgba(255,255,255,0.67);
+border-color: #0AA4E7;
+font-family: "Lucida Console", Monaco, monospace;
+}
+
+#player1 {
+left: 0px;
+color: red;
+}
+
+#player2 {
+right: 50pt;
+color: blue;
+}
+
+#player1.current-player {
+box-shadow: 0px 0px 3px 1px white, 0px 0px 20px 10px red;
+}
+
+#player2.current-player {
+box-shadow: 0px 0px 3px 1px white, 0px 0px 20px 10px blue;
+}
+
+#info {
+position: absolute;
+top: 40pt;
+right: 0px;
+border-radius: 20pt;
+background-color: rgba(173, 216, 230, 0.5);
+padding: 10px;
+margin: 10px;
+width: 20pt;
+height: 20pt;
+text-align: center;
+font-family: serif;
+font-size: 20pt;
+font-weight: bold;
+font-style: italic;
+color: white;
+}
+
+#exit {
+position: absolute;
+top: 0px;
+right: 0px;
+border-radius: 10pt;
+background-color: rgba(0, 0, 0, 0.5);
+padding: 10px;
+margin: 10px;
+width: 20pt;
+height: 20pt;
+text-align: center;
+font-family: sans-serif;
+font-size: 20pt;
+font-weight: bold;
+color: white;
+}
+
+table.settings {
+width: 100%;
+}
+
+.settings .value input{
+width: 100%;
+}
+
+.settings .value select{
+width: 100%;
+}
+
+.settings .name{
+text-align: right;
+font-weight: bold;
+}
+
+#.ui-widget-overlay{
+#background: #eeeeee; 
+#}
