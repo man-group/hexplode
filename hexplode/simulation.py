@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from traceback import format_exc
 from copy import deepcopy
 from sys import stderr
+import random
 import os
 try:
     from texttable import Texttable
@@ -69,9 +70,15 @@ def _make_neighbours(i, j, boardsize):
             neighbours.append(_make_id(i + 1, j))  # Southeast neighbour
     return neighbours
 
+def _make_counters():
+    if random.random() < 0.2:
+        return -random.randint(1, 5)
+    else:
+        return None
+
 
 def _make_board(boardsize):
-    return {_make_id(i, j): dict(counters=None,
+    return {_make_id(i, j): dict(counters=_make_counters(),
                                  player=None,
                                  neighbours=_make_neighbours(i, j, boardsize))
             for i in range(2 * boardsize - 1)
@@ -92,9 +99,10 @@ def _place_counter(board, tile_id, scores, player_id):
             for neighbour in tile["neighbours"]:
                 _place_counter(board, neighbour, scores, player_id)
         else:
-            tile["player"] = player_id
+            if counters > 0:
+                tile["player"] = player_id
+                scores[player_id] += counters
             tile["counters"] = counters
-            scores[player_id] += counters
 
 
 def _player_has_all_the_counters(scores, player_id):

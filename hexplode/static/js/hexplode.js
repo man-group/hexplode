@@ -87,9 +87,13 @@ function drawBoard() {
                      }).appendTo('#board');
 
         for(var j=0; j<numtilesinslice; ++j) {
+        	var initialCounters = "";
+        	if (Math.random() < 0.2) {
+        		initialCounters = "-" + (1 + Math.floor(Math.random() * 5));
+        	}
             $('<div/>', {id: makeID(i, j),
                          class: "tile",
-                         counters: "",
+                         counters: initialCounters,
                          player: "",
                          neighbours: makeNeighbours(i, j, boardsize),
                      }).appendTo("#row" + i);
@@ -145,7 +149,8 @@ function placeCounter(tileId, scores, playerId) {
         	scores[parseInt(tile.attr("player"))] -= parseInt(tile.attr("counters"));
         }
         
-        var counters = parseInt("0" + tile.attr("counters")) + 1;
+        var txtCounters = tile.attr("counters");
+        var counters = (txtCounters=="" ? 0 : parseInt(txtCounters)) + 1;
         var neighbours = tile.attr("neighbours").split(",");
         if (counters == neighbours.length) {
             tile.attr("player", "");
@@ -154,9 +159,11 @@ function placeCounter(tileId, scores, playerId) {
                 placeCounter(neighbours[i], scores, playerId);
             }
         } else {
-            tile.attr("player", playerId);
             tile.attr("counters", counters);
-            scores[playerId] += counters;
+        	if (counters > 0) {
+            	tile.attr("player", playerId);
+	            scores[playerId] += counters;
+            }
         }
     }
 }

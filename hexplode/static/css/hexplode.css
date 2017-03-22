@@ -53,6 +53,26 @@ background-image: url("/static/img/blue4.png"), url("/static/img/tile.png");
 background-image: url("/static/img/blue5.png"), url("/static/img/tile.png");
 }
 
+.tile[counters="-1"] {
+background-image: url("/static/img/minus1.png");
+}
+
+.tile[counters="-2"] {
+background-image: url("/static/img/minus2.png");
+}
+
+.tile[counters="-3"] {
+background-image: url("/static/img/minus3.png");
+}
+
+.tile[counters="-4"] {
+background-image: url("/static/img/minus4.png");
+}
+
+.tile[counters="-5"] {
+background-image: url("/static/img/minus5.png");
+}
+
 .row {
 position: absolute;
 }
