@@ -70,15 +70,15 @@ def _make_neighbours(i, j, boardsize):
             neighbours.append(_make_id(i + 1, j))  # Southeast neighbour
     return neighbours
 
-def _make_counters():
-    if random.random() < 0.2:
+def _make_counters(probability_of_damage):
+    if random.random() < probability_of_damage:
         return -random.randint(1, 5)
     else:
         return None
 
 
-def _make_board(boardsize):
-    return {_make_id(i, j): dict(counters=_make_counters(),
+def _make_board(boardsize, probability_of_damage):
+    return {_make_id(i, j): dict(counters=_make_counters(probability_of_damage),
                                  player=None,
                                  neighbours=_make_neighbours(i, j, boardsize))
             for i in range(2 * boardsize - 1)
@@ -142,10 +142,11 @@ def run_test(algos,
              algo_start_game_handlers,
              algo_game_over_handlers,
              boardsize,
-             deepcopy):
+             deepcopy,
+             probability_of_damage):
     game_id = [uuid4() for _ in algos]
     send_start_game(game_id, boardsize, algo_ids, algo_start_game_handlers)
-    board = _make_board(boardsize)
+    board = _make_board(boardsize, probability_of_damage)
     scores = [0] * len(algos)
     player_id = 0
     moves = 0
@@ -176,7 +177,7 @@ def run_test(algos,
     return winner_id, moves, False
 
 
-def run_simulation(algo_1, algo_2, boardsize, iterations, do_deepcopy):
+def run_simulation(algo_1, algo_2, boardsize, iterations, do_deepcopy, probability_of_damage):
     algo_names = [algo_1, algo_2]
     algo_ids = list(map(algo_name_to_uuid, algo_names))
     algo_fns = [_algos[algo_id].fn for algo_id in algo_names]
@@ -191,7 +192,8 @@ def run_simulation(algo_1, algo_2, boardsize, iterations, do_deepcopy):
                                              algo_start_game_handlers,
                                              algo_game_over_handlers,
                                              boardsize,
-                                             deepcopy if do_deepcopy else lambda x: x)
+                                             deepcopy if do_deepcopy else lambda x: x,
+                                             probability_of_damage)
         
         winner_name = algo_names[winner_id]
         results.append(winner_name)
@@ -208,7 +210,7 @@ def run_simulation(algo_1, algo_2, boardsize, iterations, do_deepcopy):
     return results, stats
 
 
-def simulate_all_with_stats(boardsize, iterations, do_deepcopy=True):
+def simulate_all_with_stats(boardsize, iterations, do_deepcopy=True, probability_of_damage=0.0):
     algos = _algos.keys()
     if len(algos) < 2:
         print("Only {} algo defined - can't simulate.".format(len(algos)))
@@ -221,7 +223,8 @@ def simulate_all_with_stats(boardsize, iterations, do_deepcopy=True):
                                         algo_2,
                                         boardsize=boardsize,
                                         iterations=iterations,
-                                        do_deepcopy=do_deepcopy)
+                                        do_deepcopy=do_deepcopy,
+                                        probability_of_damage=probability_of_damage)
                                       
         algo_1_wins = len(list(filter(lambda x: x == algo_1, winners)))
         algo_2_wins = len(winners) - algo_1_wins
@@ -242,8 +245,8 @@ def simulate_all_with_stats(boardsize, iterations, do_deepcopy=True):
     return list(reversed(sorted(results.items(), key=lambda item: item[1]))), total_stats
 
 
-def simulate_all(boardsize, iterations, do_deepcopy=True):
-    return simulate_all_with_stats(boardsize, iterations, do_deepcopy)[0]
+def simulate_all(boardsize, iterations, do_deepcopy=True, probability_of_damage=0.0):
+    return simulate_all_with_stats(boardsize, iterations, do_deepcopy, probability_of_damage)[0]
 
 
 def display_table(results):

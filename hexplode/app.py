@@ -163,12 +163,35 @@ def start_windows(debug, open_browser):
     if open_browser:
         browser('localhost', _PORT, debug)
     WSGIServer(app, debug=debug, bindAddress=('localhost', _PORT + 1)).run()
+
+
+def start_gunicorn(hostname, port, open_browser):
+    import sys
+    try:
+        from gunicorn.app.wsgiapp import WSGIApplication
+    except ImportError:
+        # If gunicorn isn't installed fall back to the copy in ./dependencies
+        sys.path.append(os.path.join(os.path.dirname(__file__), "dependencies"))
+        from gunicorn.app.wsgiapp import WSGIApplication
+
+    if open_browser:
+        browser('localhost', port, False)
     
+    sys.argv = [sys.argv[0]] + ["--bind", "{}:{}".format(hostname, port),
+                                "--workers", "1",
+                                "--threads", "1",
+                                "uwsgi:app",
+                                __file__]
+    
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+
 
 def start(hostname='localhost', port=_PORT, debug=True, open_browser=True):
     if (platform.system() == "Windows"
         and hostname == 'localhost'
         and port == _PORT):
         start_windows(debug, open_browser)
+    elif platform.system() in ("Linux", "Darwin"):
+        start_gunicorn(hostname, port, open_browser)
     else:
         start_other(hostname, port, debug, open_browser)

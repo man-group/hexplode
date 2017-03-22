@@ -15,4 +15,5 @@ distributed:
 | nginx        | http://nginx.org/en                       | 2-clause BSD-like |
 | texttable    | http://pypi.python.org/pypi/texttable     | LGPL              |
 | requests     | https://pypi.python.org/pypi/requests     | Apache2           |
+| gunicorn     | https://pypi.python.org/pypi/gunicorn     | MIT               |
 +--------------+-------------------------------------------+-------------------+

@@ -74,6 +74,8 @@ function drawBoard() {
                  voverlap: 27 };
 
     var boardsize = parseInt($("#boardsize")[0].value);
+    
+    var probabilityOfDamage = $("#damagedCells").is(':checked') * 0.2;
                  
     board.width((2*boardsize-2)*tile.hoverlap + tile.width);
     board.height((2*boardsize-1)*tile.height);
@@ -88,7 +90,7 @@ function drawBoard() {
 
         for(var j=0; j<numtilesinslice; ++j) {
         	var initialCounters = "";
-        	if (Math.random() < 0.2) {
+        	if (Math.random() < probabilityOfDamage) {
         		initialCounters = "-" + (1 + Math.floor(Math.random() * 5));
         	}
             $('<div/>', {id: makeID(i, j),
