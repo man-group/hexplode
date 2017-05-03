@@ -2,6 +2,7 @@
 This is the winning algo from the Man AHL Coder Prize 2016
 Written by Hamed Ahmadi from the University of Oxford
 """
+from __future__ import print_function
 from hexplode import algo_player
 import os
 import time
