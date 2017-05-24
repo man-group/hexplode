@@ -1,6 +1,6 @@
 # ![Hexplode](hexplode/static/img/hexplode-logo.png)
 
-Chain reaction strategy game as featured in the [Man AHL Coder Prize 2016](www.ahl.com/coderprize2016)
+Chain reaction strategy game as featured in the [Man AHL Coder Prize 2016](http://www.ahl.com/coderprize2016)
 
 You can [play the demo online.](http://hiveminder.pythonanywhere.com/)
 
