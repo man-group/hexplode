@@ -1,3 +1,9 @@
+# ![Hexplode](hexplode/static/img/hexplode-logo.png)
+
+Chain reaction strategy game as featured in the [Man AHL Coder Prize 2016](http://www.ahl.com/coderprize2016)
+
+You can [play the demo online.](http://hiveminder.pythonanywhere.com/)
+
 Hexplode is played by 2 players on a board of hexagonal tiles. The players take turns to place a counter on the board,
 they can only play a counter in an empty tile or a tile they already own. When the number of counters on a given tile
 equals the number of adjacent tiles the tile hexplodes and the contents of the tile are equally distributed to its
@@ -15,3 +21,5 @@ your system are python* and a relatively up-to-date web browser.
 The challenge in the original competition was to write an algo player for the game and two example algo players were
 provided in the algos package to help entrants get started. You can measure the relative performance of all your algos
 by running ```python simulate.py```.
+
+The game of Hexplode originally appeared in 1982 in PCW (Personal Computer World) magazine as a BASIC program for the BBC Micro written by J. Ansell.
