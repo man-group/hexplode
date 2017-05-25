@@ -2,7 +2,7 @@
 
 Chain reaction strategy game as featured in the [Man AHL Coder Prize 2016](http://www.ahl.com/coderprize2016)
 
-You can [play the demo online.](http://hiveminder.pythonanywhere.com/)
+You can [play the demo online.](http://hexplode.pythonanywhere.com/)
 
 Hexplode is played by 2 players on a board of hexagonal tiles. The players take turns to place a counter on the board,
 they can only play a counter in an empty tile or a tile they already own. When the number of counters on a given tile
