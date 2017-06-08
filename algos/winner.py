@@ -697,7 +697,7 @@ def findbestmove(b):
 			
 	return move
 	
-@algo_player(name="GenHex-Fast-v18b",
+@algo_player(name="WinningAlgo",
 			 description="GenHex-Fast-v18b")
 def pyhex(board, game_id, player_id):
 		
